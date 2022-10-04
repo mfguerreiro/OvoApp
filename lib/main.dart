@@ -51,6 +51,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    var width = (MediaQuery.of(context).size.width / 13);
     return Scaffold(
         appBar: AppBar(
           title: Row(
@@ -60,9 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 60.0,
                 width: 60.0,
               ),
-              const Text(
+               Text(
                 "Controle de ovos",
-                style: TextStyle(fontSize: 30.0),
+                style: TextStyle(fontSize: width),
               ),
             ],
           ),
