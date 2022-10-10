@@ -8,13 +8,13 @@ class Reports extends StatefulWidget {
 class ReportsState extends State<Reports> {
   @override
   Widget build(BuildContext context) {
+    var width = (MediaQuery.of(context).size.width / 13);
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.amber,
           centerTitle: true,
           title: const Text(
-            "Relatórios",
-            style: TextStyle(fontSize: 28.0),
+            "Relatórios",          
           ),
           actions: const [
             Padding(

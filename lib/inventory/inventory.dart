@@ -8,6 +8,7 @@ class Inventory extends StatefulWidget {
 class InventoryState extends State<Inventory> {
   @override
   Widget build(BuildContext context) {
+    var width = (MediaQuery.of(context).size.width / 13);
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.amber,
@@ -15,7 +16,6 @@ class InventoryState extends State<Inventory> {
             children: const [
               Text(
                 "Cadastrar estoque",
-                style: TextStyle(fontSize: 27.0),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 15.0),

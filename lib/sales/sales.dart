@@ -8,14 +8,14 @@ class Sales extends StatefulWidget {
 class SalesState extends State<Sales> {
   @override
   Widget build(BuildContext context) {
+    var width = (MediaQuery.of(context).size.width / 13);
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.amber,
             title: Row(
               children: const [
                 Text(
-                  "Cadastrar vendas",
-                  style: TextStyle(fontSize: 28.0),
+                  "Cadastrar vendas",          
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 15.0),

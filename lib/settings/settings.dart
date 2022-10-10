@@ -8,13 +8,13 @@ class Settings extends StatefulWidget {
 class SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
+    var width = (MediaQuery.of(context).size.width / 13);
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.amber,
           centerTitle: true,
           title: const Text(
             "Configurações",
-            style: TextStyle(fontSize: 28.0),
           ),
           actions: const [
             Padding(
