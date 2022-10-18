@@ -1,12 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import '../sales/sales.dart';
 import '../inventory/inventory.dart';
 import '../reports/reports.dart';
 import '../settings/settings.dart';
-
-
 
 class BuildButtonsHome extends StatefulWidget {
   const BuildButtonsHome({Key? key}) : super(key: key);
@@ -21,38 +17,38 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
     var height = (MediaQuery.of(context).size.height / 2);
     var width = (MediaQuery.of(context).size.width / 2);
     return SizedBox(
-      
       child: Column(
-       
-   
         children: <Widget>[
           Container(
             padding: const EdgeInsets.all(10.0),
             child: Row(
-               mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Padding(                //botão cadastrar vendas
+                Padding(
+                  //botão cadastrar vendas
                   padding: const EdgeInsets.fromLTRB(10.0, 70.0, 10.0, 10.0),
-                  child: SizedBox(                    
+                  child: SizedBox(
                       width: MediaQuery.of(context).size.width / 3,
                       height: MediaQuery.of(context).size.height / 5,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)
-                            ),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
                             padding: const EdgeInsets.all(10.0),
                             primary: Colors.white,
                           ),
                           onPressed: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => Sales()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Sales()));
                           },
                           child: Column(
                             children: const [
                               Padding(
-                                padding: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 5.0),
+                                padding:
+                                    EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 5.0),
                                 child: Icon(
                                   Icons.request_page_outlined,
                                   color: Colors.amber,
@@ -62,7 +58,8 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                               Text(
                                 "Vendas",
                                 textAlign: TextAlign.center,
-                                style:TextStyle(color: Colors.amber, fontSize:12),
+                                style: TextStyle(
+                                    color: Colors.amber, fontSize: 12),
                               ),
                             ],
                           ))),
@@ -74,15 +71,13 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                       width: MediaQuery.of(context).size.width / 3,
                       height: MediaQuery.of(context).size.height / 5,
                       child: ElevatedButton(
-                     
                           style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)
-                            ),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
                             padding: const EdgeInsets.all(10.0),
                             primary: Colors.white,
                           ),
-                               onPressed: () {
+                          onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -91,7 +86,8 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                           child: Column(
                             children: const [
                               Padding(
-                                padding: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 5.0),
+                                padding:
+                                    EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 5.0),
                                 child: Icon(
                                   Icons.store,
                                   color: Colors.amber,
@@ -113,8 +109,8 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
           Container(
             padding: const EdgeInsets.all(10.0),
             child: Row(
-               mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Padding(
                   //botão relatórios
@@ -124,9 +120,8 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                       height: MediaQuery.of(context).size.height / 5,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)
-                            ),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
                             padding: const EdgeInsets.all(10.0),
                             primary: Colors.white,
                           ),
@@ -139,7 +134,8 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                           child: Column(
                             children: const [
                               Padding(
-                                padding: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 5.0),
+                                padding:
+                                    EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 5.0),
                                 child: Icon(
                                   Icons.list_alt,
                                   color: Colors.amber,
@@ -157,14 +153,13 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                 Padding(
                   //botão configurações
                   padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
-                  child: SizedBox(          
+                  child: SizedBox(
                       width: MediaQuery.of(context).size.width / 3,
                       height: MediaQuery.of(context).size.height / 5,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)
-                            ),
+                                borderRadius: BorderRadius.circular(30)),
                             primary: Colors.white,
                             padding: const EdgeInsets.all(10.0),
                           ),
@@ -177,7 +172,8 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                           child: Column(
                             children: const [
                               Padding(
-                                padding: EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 5.0),
+                                padding:
+                                    EdgeInsets.fromLTRB(5.0, 2.0, 5.0, 5.0),
                                 child: Icon(
                                   Icons.settings,
                                   color: Colors.amber,
