@@ -27,7 +27,7 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
               children: <Widget>[
                 Padding(
                   //botão cadastrar vendas
-                  padding: const EdgeInsets.fromLTRB(10.0, 70.0, 10.0, 10.0),
+                  padding: const EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 10.0),
                   child: SizedBox(
                       width: MediaQuery.of(context).size.width / 3,
                       height: MediaQuery.of(context).size.height / 5,
@@ -66,7 +66,7 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                 ),
                 Padding(
                   // botão cadastrar estoque
-                  padding: const EdgeInsets.fromLTRB(10.0, 70.0, 10.0, 10.0),
+                  padding: const EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 10.0),
                   child: SizedBox(
                       width: MediaQuery.of(context).size.width / 3,
                       height: MediaQuery.of(context).size.height / 5,
@@ -114,7 +114,7 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
               children: <Widget>[
                 Padding(
                   //botão relatórios
-                  padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
+                  padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
                   child: SizedBox(
                       width: MediaQuery.of(context).size.width / 3,
                       height: MediaQuery.of(context).size.height / 5,
@@ -152,7 +152,7 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                 ),
                 Padding(
                   //botão configurações
-                  padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
+                  padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
                   child: SizedBox(
                       width: MediaQuery.of(context).size.width / 3,
                       height: MediaQuery.of(context).size.height / 5,

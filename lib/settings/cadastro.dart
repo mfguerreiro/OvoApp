@@ -11,7 +11,6 @@ class Log extends StatefulWidget {
 }
 
 class _LogState extends State<Log> {
-
   @override
   @override
   Widget build(BuildContext context) {
@@ -33,10 +32,11 @@ class _LogState extends State<Log> {
               Row(
                 children: const [
                   Expanded(
-                    child: TextField(              
+                    child: TextField(
                       decoration: InputDecoration(
                         labelText: 'Insira a nova rota!',
-                        labelStyle: TextStyle(color: Colors.black, fontSize: 20),
+                        labelStyle:
+                            TextStyle(color: Colors.black, fontSize: 20),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black)),
                       ),
@@ -47,21 +47,21 @@ class _LogState extends State<Log> {
               const SizedBox(
                 height: 16,
               ),
-              ElevatedButton(onPressed: () {}, 
-              style: ElevatedButton.styleFrom(                      
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),           
-            ),            
-            primary: Colors.green,
-              padding: const EdgeInsets.fromLTRB(20,9,20,9),          
-              ),
- child: const Text('Salvar'),   
-                )    
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  primary: Colors.green,
+                  padding: const EdgeInsets.fromLTRB(20, 9, 20, 9),
+                ),
+                child: const Text('Salvar'),
+              )
             ],
           ),
         ),
       ),
     );
   }
-  
 }
