@@ -8,7 +8,7 @@ class User extends StatefulWidget {
 }
 
 class UserState extends State<User> {
-  TextEditingController _userController = TextEditingController();
+  final TextEditingController _userController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

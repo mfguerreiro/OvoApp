@@ -14,7 +14,7 @@ class UserFunctions {
         await Api().requestPost('/user', {'name': name, 'deviceId': deviceId});
 
     if (response.statusCode == 201) {
-      SharedPreferencesUtils().setString('DEVICE_ID', deviceId);
+      SharedPreferencesUtils().setString('USER_ID', response.userId);
       SharedPreferencesUtils().setString('NAME', name);
 
       Navigator.push(

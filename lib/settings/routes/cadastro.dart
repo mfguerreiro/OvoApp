@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ovoapp/helpers/api.dart';
+import 'package:ovoapp/settings/routes/routeFunctions.dart';
+
+import '../../helpers/sharedPreferences.dart';
 
 void main() {
   runApp(Log());
@@ -11,11 +15,15 @@ class Log extends StatefulWidget {
 }
 
 class _LogState extends State<Log> {
+  String userId = SharedPreferencesUtils().getString('USER_ID');
+  final TextEditingController _routeController = TextEditingController();
+
   @override
   @override
   Widget build(BuildContext context) {
     var width = (MediaQuery.of(context).size.width / 13);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.amber,
         centerTitle: true,
@@ -30,10 +38,11 @@ class _LogState extends State<Log> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Row(
-                children: const [
+                children: [
                   Expanded(
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: _routeController,
+                      decoration: const InputDecoration(
                         labelText: 'Insira a nova rota!',
                         labelStyle:
                             TextStyle(color: Colors.black, fontSize: 20),
@@ -48,7 +57,10 @@ class _LogState extends State<Log> {
                 height: 16,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await RouteFunctions()
+                      .registerRoute(context, _routeController.text, userId);
+                },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),

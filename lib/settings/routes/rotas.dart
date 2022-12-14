@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:ovoapp/helpers/sharedPreferences.dart';
+import 'package:ovoapp/settings/routes/routeFunctions.dart';
 import 'cadastro.dart';
 
 void main() {
@@ -15,9 +17,27 @@ class Rotas extends StatefulWidget {
 }
 
 class _RotasState extends State<Rotas> {
+  var routes = [];
+
+  _getUsers() {
+    RouteFunctions()
+        .getRoutesByUser(context, SharedPreferencesUtils().getString("USER_ID"))
+        .then((response) {
+      setState(() {
+        routes = response.data.toList();
+      });
+    });
+  }
+
+  initState() {
+    super.initState();
+    _getUsers();
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = (MediaQuery.of(context).size.width / 13);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
@@ -26,25 +46,11 @@ class _RotasState extends State<Rotas> {
           "Rotas",
         ),
       ),
-      body: ListView(
+      body: ListView.builder(
         shrinkWrap: true,
-        children: [
-          Container(
-            color: Colors.red,
-            width: 50,
-            height: 50,
-          ),
-          Container(
-            color: Colors.black,
-            width: 50,
-            height: 50,
-          ),
-          Container(
-            color: Colors.green,
-            width: 50,
-            height: 50,
-          ),
-        ],
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(title: Text(routes[index].name));
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

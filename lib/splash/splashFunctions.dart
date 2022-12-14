@@ -13,10 +13,12 @@ class SplashFunctions {
 
     var response = await Api().requestGet('/user/deviceId/$deviceId');
 
+    print('RESPONSE SPLASH');
+    print(response);
+
     if (response['statusCode'] == 200) {
       if (response['data'] != null) {
-        SharedPreferencesUtils()
-            .setString('DEVICE_ID', response['data']['deviceId']);
+        SharedPreferencesUtils().setString('USER_ID', response['data']['id']);
         SharedPreferencesUtils().setString('NAME', response['data']['name']);
 
         Navigator.push(context,

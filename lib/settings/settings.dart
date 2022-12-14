@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'rotas.dart';
+import 'routes/rotas.dart';
 
 class Settings extends StatefulWidget {
   @override
