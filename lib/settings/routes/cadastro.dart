@@ -42,6 +42,7 @@ class _LogState extends State<Log> {
                   Expanded(
                     child: TextField(
                       controller: _routeController,
+                      
                       decoration: const InputDecoration(
                         labelText: 'Insira a nova rota!',
                         labelStyle:

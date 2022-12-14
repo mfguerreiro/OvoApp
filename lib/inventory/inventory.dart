@@ -6,6 +6,8 @@ class Inventory extends StatefulWidget {
 }
 
 class InventoryState extends State<Inventory> {
+  get child => null;
+
   @override
   Widget build(BuildContext context) {
     var width = (MediaQuery.of(context).size.width / 13);
@@ -26,7 +28,39 @@ class InventoryState extends State<Inventory> {
               ),
             ],
           )),
-      body: const Text('Tela Estoque'),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            children: const [
+                       
+              
+                Text(
+                  'Quantidade:',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25.0,
+                  ),
+                ),
+              
+            ],
+          ),
+          Row(
+            children: const [
+              Expanded(
+                child: SizedBox(
+                  width: 15.0,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: ('0'),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
