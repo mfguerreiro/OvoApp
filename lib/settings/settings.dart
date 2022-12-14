@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:ovoapp/settings/products/productsList.dart';
 
 import 'routes/rotas.dart';
 
@@ -75,7 +76,10 @@ class SettingsState extends State<Settings> {
                       padding: const EdgeInsets.all(10.0),
                       primary: Colors.white,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Products()));
+                      },
                     child: Column(
                       children: const [
                         Padding(
