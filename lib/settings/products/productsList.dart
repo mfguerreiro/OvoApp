@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:ovoapp/helpers/sharedPreferences.dart';
-import 'package:ovoapp/settings/products/registerproducts.dart';
+import 'package:ovoapp/settings/products/registerProducts.dart';
 import 'package:ovoapp/settings/routes/routeFunctions.dart';
 
 import '../routes/cadastro.dart';
-
 
 void main() {
   runApp(const Products());
@@ -57,10 +56,9 @@ class _ProductsState extends State<Products> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push( context,
-                                MaterialPageRoute(
-                                    builder: (context) => RegisterProducts()));
-              // context, MaterialPageRoute(builder: (context) => Log()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => RegisterProducts()));
+          // context, MaterialPageRoute(builder: (context) => Log()));
         },
         backgroundColor: Colors.green,
         child: const Icon(Icons.add),

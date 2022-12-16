@@ -11,28 +11,26 @@ class SplashFunctions {
 
     String? deviceId = await getDeviceIdentifier();
 
-   // var response = await Api().requestGet('/user/deviceId/$deviceId');
-   Navigator.push(context,
+    var response = await Api().requestGet('/user/deviceId/$deviceId');
+
+    print('RESPONSE SPLASH');
+    print(response);
+
+    if (response['statusCode'] == 200) {
+      if (response['data'] != null) {
+        SharedPreferencesUtils().setString('USER_ID', response['data']['id']);
+        SharedPreferencesUtils().setString('NAME', response['data']['name']);
+
+        Navigator.push(context,
             MaterialPageRoute(builder: (context) => const HomeScreen()));
-
-    // print('RESPONSE SPLASH');
-    // print(response);
-
-    // if (response['statusCode'] == 200) {
-    //   if (response['data'] != null) {
-    //     SharedPreferencesUtils().setString('USER_ID', response['data']['id']);
-    //     SharedPreferencesUtils().setString('NAME', response['data']['name']);
-
-    //     Navigator.push(context,
-    //         MaterialPageRoute(builder: (context) => const HomeScreen()));
-    //   } else {
-    //     Navigator.push(
-    //         context, MaterialPageRoute(builder: (context) => User()));
-    //   }
-    // } else {
-    //   print('Erro ao buscar deviceId');
-    //   print(response.toString());
-      //tratar erros: usuário/senha errado OU não cadastrado
-    //}
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => User()));
+      }
+    } else {
+      print('Erro ao buscar deviceId');
+      print(response.toString());
+      // tratar erros: usuário/senha errado OU não cadastrado
+    }
   }
 }
