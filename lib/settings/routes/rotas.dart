@@ -19,12 +19,15 @@ class Rotas extends StatefulWidget {
 class _RotasState extends State<Rotas> {
   var routes = [];
 
-  _getUsers() {
+  Future<void> _getUsers() async {
     RouteFunctions()
         .getRoutesByUser(context, SharedPreferencesUtils().getString("USER_ID"))
         .then((response) {
       setState(() {
-        routes = response.data.toList();
+        routes = response.toList();
+
+        print('print routes');
+        print(routes);
       });
     });
   }
@@ -36,7 +39,27 @@ class _RotasState extends State<Rotas> {
 
   @override
   Widget build(BuildContext context) {
-    var width = (MediaQuery.of(context).size.width / 13);
+    final routeList = Scaffold(
+      body: ListView.builder(
+        itemCount: routes.length,
+        shrinkWrap: true,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(title: Text(routes[index]['name']));
+        },
+      ),
+    );
+
+    final emptyRoutes = Scaffold(
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Center(
+            child: Text("(Nenhuma rota cadastrada)",
+                style: TextStyle(color: Colors.grey)),
+          )
+        ],
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -46,12 +69,11 @@ class _RotasState extends State<Rotas> {
           "Rotas",
         ),
       ),
-      body: ListView.builder(
-        shrinkWrap: true,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(title: Text(routes[index].name));
-        },
-      ),
+      body: RefreshIndicator(
+          onRefresh: () {
+            return _getUsers();
+          },
+          child: routes.isNotEmpty ? routeList : emptyRoutes),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(

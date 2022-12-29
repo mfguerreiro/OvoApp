@@ -5,26 +5,25 @@ var url = 'https://ovoapi.onrender.com';
 
 class Api {
   requestPost(String urlDestiny, data) async {
-    var body = jsonEncode(data);
+    try {
+      var body = jsonEncode(data);
 
-    http.Response response;
+      http.Response response;
 
-    print(url + urlDestiny);
-    print(body);
+      print(url + urlDestiny);
+      print(body);
 
-    response = await http.post(Uri.parse(url + urlDestiny),
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: body);
+      response = await http.post(Uri.parse(url + urlDestiny),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: body);
 
-    var decodedResponse = json.decode(response.body);
-
-    print('\n\n decodedResponsePost');
-    print(decodedResponse);
-    print(response.statusCode);
-
-    return {'statusCode': response.statusCode, 'data': decodedResponse};
+      return {'statusCode': response.statusCode};
+    } catch (e) {
+      print('erro request post! ');
+      print(e);
+    }
   }
 
   requestGet(String urlDestiny) async {
