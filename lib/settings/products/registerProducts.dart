@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ovoapp/helpers/api.dart';
+import 'package:ovoapp/settings/products/productsFunctions.dart';
 import 'package:ovoapp/settings/routes/routeFunctions.dart';
 
 import '../../helpers/sharedPreferences.dart';
@@ -41,7 +42,7 @@ class _RegisterProductsState extends State<RegisterProducts> {
                 children: [
                   Expanded(
                     child: TextField(
-                     // controller: _routeController,
+                      controller: _productsController,
                       decoration: const InputDecoration(
                         labelText: 'Insira o novo produto!',
                         labelStyle:
@@ -58,8 +59,8 @@ class _RegisterProductsState extends State<RegisterProducts> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  // await RouteFunctions()
-                  //     .registerRoute(context, _routeController.text, userId);
+                  await ProductFunctions().registerProduct(
+                      context, _productsController.text, userId);
                 },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
