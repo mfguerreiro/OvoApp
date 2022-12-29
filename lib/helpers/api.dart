@@ -19,6 +19,9 @@ class Api {
           },
           body: body);
 
+      print('status code post');
+      print(response.statusCode);
+
       return {'statusCode': response.statusCode};
     } catch (e) {
       print('erro request post! ');

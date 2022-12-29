@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:ovoapp/helpers/sharedPreferences.dart';
+import 'package:ovoapp/settings/products/productsFunctions.dart';
 import 'package:ovoapp/settings/products/registerProducts.dart';
 import 'package:ovoapp/settings/routes/routeFunctions.dart';
 
@@ -19,26 +20,49 @@ class Products extends StatefulWidget {
 }
 
 class _ProductsState extends State<Products> {
-  var routes = [];
+  var products = [];
 
-  // _getUsers() {
-  //   RouteFunctions()
-  //       .getRoutesByUser(context, SharedPreferencesUtils().getString("USER_ID"))
-  //       .then((response) {
-  //     setState(() {
-  //       routes = response.data.toList();
-  //     });
-  //   });
-  // }
+  _getProductsByUser() {
+    ProductFunctions()
+        .getProductsByUser(
+            context, SharedPreferencesUtils().getString("USER_ID"))
+        .then((response) {
+      setState(() {
+        products = response.toList();
+        print('products');
+        print(products);
+      });
+    });
+  }
 
-  // initState() {
-  //   super.initState();
-  //   _getUsers();
-  // }
+  initState() {
+    super.initState();
+    _getProductsByUser();
+  }
 
   @override
   Widget build(BuildContext context) {
-    var width = (MediaQuery.of(context).size.width / 13);
+    final productList = Scaffold(
+      body: ListView.builder(
+        itemCount: products.length,
+        shrinkWrap: true,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(title: Text(products[index]['name']));
+        },
+      ),
+    );
+
+    final emptyProducts = Scaffold(
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Center(
+            child: Text("(Nenhum produto cadastrado)",
+                style: TextStyle(color: Colors.grey)),
+          )
+        ],
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -48,12 +72,11 @@ class _ProductsState extends State<Products> {
           "Produtos",
         ),
       ),
-      body: ListView.builder(
-        shrinkWrap: true,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(title: Text(routes[index].name));
-        },
-      ),
+      body: RefreshIndicator(
+          onRefresh: () {
+            return _getProductsByUser();
+          },
+          child: products.isNotEmpty ? productList : emptyProducts),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,
