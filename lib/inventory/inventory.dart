@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ovoapp/inventory/inventoryFunctions.dart';
 
 import '../helpers/sharedPreferences.dart';
 import '../settings/products/productsFunctions.dart';
-
 
 class Inventory extends StatefulWidget {
   @override
@@ -13,8 +13,7 @@ class Inventory extends StatefulWidget {
 enum TypeQuantity { unity, box, carton }
 
 class InventoryState extends State<Inventory> {
-
-  var  products=[];
+  var products = [];
 
   _getProductsByUser() {
     ProductFunctions()
@@ -28,7 +27,7 @@ class InventoryState extends State<Inventory> {
       });
     });
   }
-  
+
   get child => null;
   TypeQuantity? _character = TypeQuantity.unity;
   TextEditingController dateInput = TextEditingController();
@@ -46,7 +45,7 @@ class InventoryState extends State<Inventory> {
   @override
   Widget build(BuildContext context) {
     var width = (MediaQuery.of(context).size.width / 13);
-    
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -74,7 +73,7 @@ class InventoryState extends State<Inventory> {
               children: [
                 Column(
                   children: [
-                    Text(
+                    const Text(
                       'Quantidade:',
                       style: TextStyle(
                         color: Colors.black,
@@ -84,10 +83,10 @@ class InventoryState extends State<Inventory> {
                     SizedBox(
                       width: 125.0,
                       child: TextField(
-                        controller: quantityController ,
-                        keyboardType: TextInputType.numberWithOptions(),
+                        controller: quantityController,
+                        keyboardType: const TextInputType.numberWithOptions(),
                         textAlign: TextAlign.center,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: ('0'),
                         ),
                       ),
@@ -184,46 +183,20 @@ class InventoryState extends State<Inventory> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children:  [
-                    Text(
+                  children: [
+                    const Text(
                       'Valor de custo:',
                       style: TextStyle(fontSize: 25.0),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 25.0),
+                      padding: const EdgeInsets.only(left: 25.0),
                       child: SizedBox(
                         width: 125.0,
                         child: TextField(
                           controller: costController,
-                          keyboardType: TextInputType.numberWithOptions(),
+                          keyboardType: const TextInputType.numberWithOptions(),
                           textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            hintText: ('0'),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 35,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:  [
-                    Text(
-                      'Valor de venda:',
-                      style: TextStyle(fontSize: 25.0),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 25.0),
-                      child: SizedBox(
-                        width: 125.0,
-                        child: TextField(
-                          controller: sellController,
-                          keyboardType: TextInputType.numberWithOptions(),
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: ('0'),
                           ),
                         ),
@@ -237,7 +210,33 @@ class InventoryState extends State<Inventory> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const Text(
+                      'Valor de venda:',
+                      style: TextStyle(fontSize: 25.0),
+                    ),
                     Padding(
+                      padding: const EdgeInsets.only(left: 25.0),
+                      child: SizedBox(
+                        width: 125.0,
+                        child: TextField(
+                          controller: sellController,
+                          keyboardType: const TextInputType.numberWithOptions(),
+                          textAlign: TextAlign.center,
+                          decoration: const InputDecoration(
+                            hintText: ('0'),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Padding(
                       padding: EdgeInsets.only(left: 13.0),
                       child: Text(
                         'Data de compra:',
@@ -245,12 +244,12 @@ class InventoryState extends State<Inventory> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 25.0),
+                      padding: const EdgeInsets.only(left: 25.0),
                       child: SizedBox(
                         width: 125.0,
                         child: TextField(
                           controller: dateInput,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             icon: Icon(Icons.calendar_today),
                           ),
                           readOnly: true,
@@ -285,36 +284,58 @@ class InventoryState extends State<Inventory> {
                   children: [
                     ElevatedButton(
                         onPressed: () {
-                            quantityController.text='';
-                            sellController.text='';
-                            costController.text='';
-                            dateInput.text='';
-                             setState(() {
-                                _character = TypeQuantity.unity;
-                                print('produtos');
-                                print(products[0]['id']);
-                                dropdownValue = products[0]['id'];
-                              });
+                          quantityController.text = '';
+                          sellController.text = '';
+                          costController.text = '';
+                          dateInput.text = '';
+                          setState(() {
+                            _character = TypeQuantity.unity;
+                            print('produtos');
+                            print(products[0]['id']);
+                            dropdownValue = products[0]['id'];
+                          });
                         },
-                        child: Text(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.amber,
+                        ),
+                        child: const Text(
                           'Limpar',
                           style: TextStyle(fontSize: 20),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.amber,
                         )),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal:25.0),
-                            child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: ElevatedButton(
+                          onPressed: () async {
+                            print('---------__> onpressed');
+
+                            var realValues = InventoryFuncions()
+                                .calculateValues(
+                                    int.parse(quantityController.text),
+                                    int.parse(costController.text),
+                                    int.parse(sellController.text),
+                                    _character);
+
+                            print('realQuantity');
+                            print(realValues['costValue']);
+
+                            await InventoryFuncions().registerInventory(
+                                context,
+                                realValues['quantity'],
+                                realValues['costValue'],
+                                realValues['saleValue'],
+                                dateInput.text,
+                                dropdownValue,
+                                SharedPreferencesUtils().getString('USER_ID'));
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 43, 148, 45),
+                          ),
+                          child: const Text(
                             'Enviar',
                             style: TextStyle(fontSize: 20),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                            primary: Color.fromARGB(255, 43, 148, 45),
-                        )),
-                          ),
+                          )),
+                    ),
                   ],
                 ),
               ],

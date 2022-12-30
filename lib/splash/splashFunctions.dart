@@ -17,9 +17,14 @@ class SplashFunctions {
     print(response);
 
     if (response['statusCode'] == 200) {
+      print('if 200');
+
       if (response['data'] != null) {
+        print('if data != null');
+
         SharedPreferencesUtils().setString('USER_ID', response['data']['id']);
         SharedPreferencesUtils().setString('NAME', response['data']['name']);
+        print('set shared preferences');
 
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const HomeScreen()));

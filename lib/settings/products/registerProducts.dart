@@ -66,7 +66,7 @@ class _RegisterProductsState extends State<RegisterProducts> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  primary: Colors.green,
+                  backgroundColor: Colors.green,
                   padding: const EdgeInsets.fromLTRB(20, 9, 20, 9),
                 ),
                 child: const Text('Salvar'),
