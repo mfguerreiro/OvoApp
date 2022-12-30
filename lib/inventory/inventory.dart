@@ -14,6 +14,7 @@ enum TypeQuantity { unity, box, carton }
 
 class InventoryState extends State<Inventory> {
   var products = [];
+  var dropdownValue;
 
   _getProductsByUser() {
     ProductFunctions()
@@ -22,6 +23,8 @@ class InventoryState extends State<Inventory> {
         .then((response) {
       setState(() {
         products = response.toList();
+        dropdownValue = products.isNotEmpty ? products[0]['id'] : null;
+
         print('products');
         print(products);
       });
@@ -34,10 +37,10 @@ class InventoryState extends State<Inventory> {
   TextEditingController quantityController = TextEditingController();
   TextEditingController sellController = TextEditingController();
   TextEditingController costController = TextEditingController();
-  var dropdownValue;
   @override
   void initState() {
-    dateInput.text = ""; //set the initial value of text field
+    dateInput.text = DateFormat('yyyy/MM/dd')
+        .format(DateTime.now()); //set the initial value of text field
     _getProductsByUser();
     super.initState();
   }
