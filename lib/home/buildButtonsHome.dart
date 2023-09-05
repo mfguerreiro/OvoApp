@@ -33,10 +33,9 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                       height: MediaQuery.of(context).size.height / 5,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
+                            foregroundColor: Colors.white, shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30)),
                             padding: const EdgeInsets.all(10.0),
-                            primary: Colors.white,
                           ),
                           onPressed: () {
                             Navigator.push(
@@ -73,9 +72,8 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30)),
+                                borderRadius: BorderRadius.circular(30)), backgroundColor: Colors.white,
                             padding: const EdgeInsets.all(10.0),
-                            primary: Colors.white,
                           ),
                           onPressed: () {
                             Navigator.push(
@@ -123,7 +121,7 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30)),
                             padding: const EdgeInsets.all(10.0),
-                            primary: Colors.white,
+                            backgroundColor: Colors.white,
                           ),
                           onPressed: () {
                             Navigator.push(
@@ -160,7 +158,7 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30)),
-                            primary: Colors.white,
+                            backgroundColor: Colors.white,
                             padding: const EdgeInsets.all(10.0),
                           ),
                           onPressed: () {

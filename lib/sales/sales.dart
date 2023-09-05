@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 class Sales extends StatefulWidget {
@@ -29,4 +31,7 @@ class SalesState extends State<Sales> {
         body: SingleChildScrollView(
             child: Column(children: const <Widget>[Text('Cadastrar Vendas')])));
   }
+}
+
+SingleChildScrollView({required child}) {
 }

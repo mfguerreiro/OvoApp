@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'helpers/sharedPreferences.dart';
 import 'home/home.dart';
@@ -22,4 +22,4 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(body: Splash());
   }
-}
+}*/
