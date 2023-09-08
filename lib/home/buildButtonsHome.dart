@@ -14,8 +14,6 @@ class BuildButtonsHome extends StatefulWidget {
 class BuildButtonsHomeState extends State<BuildButtonsHome> {
   @override
   Widget build(BuildContext context) {
-    var height = (MediaQuery.of(context).size.height / 2);
-    var width = (MediaQuery.of(context).size.width / 2);
     return SizedBox(
       child: Column(
         children: <Widget>[
@@ -33,7 +31,7 @@ class BuildButtonsHomeState extends State<BuildButtonsHome> {
                       height: MediaQuery.of(context).size.height / 5,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white, shape: RoundedRectangleBorder(
+                            backgroundColor: Colors.white, shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30)),
                             padding: const EdgeInsets.all(10.0),
                           ),
