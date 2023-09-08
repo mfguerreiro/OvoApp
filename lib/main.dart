@@ -1,15 +1,18 @@
-/*import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'helpers/sharedPreferences.dart';
-import 'home/home.dart';
-import 'splash/splash.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:ovoapp/home/home.dart';
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   runApp(MaterialApp(
       builder: EasyLoading.init(),
       debugShowCheckedModeBanner: false,
       home: Home()));
-  SharedPreferencesUtils().init();
+  // SharedPreferencesUtils().init();
 }
 
 class Home extends StatefulWidget {
@@ -20,6 +23,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Splash());
+    FlutterNativeSplash.remove();
+    return const Scaffold(body: HomeScreen());
   }
-}*/
+}

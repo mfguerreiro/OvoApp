@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 class Sales extends StatefulWidget {
@@ -17,7 +15,7 @@ class SalesState extends State<Sales> {
             title: Row(
               children: const [
                 Text(
-                  "Cadastrar vendas",          
+                  "Cadastrar vendas",
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 15.0),
@@ -33,5 +31,4 @@ class SalesState extends State<Sales> {
   }
 }
 
-SingleChildScrollView({required child}) {
-}
+SingleChildScrollView({required child}) {}
