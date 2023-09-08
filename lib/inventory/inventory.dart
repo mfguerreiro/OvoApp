@@ -14,7 +14,8 @@ enum TypeQuantity { unity, box, carton }
 
 class InventoryState extends State<Inventory> {
   var products = [];
-  var dropdownValue;
+  var productsDropDownValues;
+  var unities;
 
   _getProductsByUser() {
     ProductFunctions()
@@ -23,7 +24,7 @@ class InventoryState extends State<Inventory> {
         .then((response) {
       setState(() {
         products = response.toList();
-        dropdownValue = products.isNotEmpty ? products[0]['id'] : null;
+        productsDropDownValues = products.isNotEmpty ? products[0]['id'] : null;
 
         print('products');
         print(products);
@@ -47,8 +48,7 @@ class InventoryState extends State<Inventory> {
 
   @override
   Widget build(BuildContext context) {
-    var width = (MediaQuery.of(context).size.width / 13);
-
+    var width = (MediaQuery.of(context).size.width );
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -67,83 +67,12 @@ class InventoryState extends State<Inventory> {
               ),
             ],
           )),
+          
+          
       body: ListView(shrinkWrap: true, children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    const Text(
-                      'Quantidade:',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25.0,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 125.0,
-                      child: TextField(
-                        controller: quantityController,
-                        keyboardType: const TextInputType.numberWithOptions(),
-                        textAlign: TextAlign.center,
-                        decoration: const InputDecoration(
-                          hintText: ('0'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 170,
-                      child: ListTile(
-                        title: const Text('Unidade'),
-                        leading: Radio<TypeQuantity>(
-                            value: TypeQuantity.unity,
-                            groupValue: _character,
-                            onChanged: (TypeQuantity? value) {
-                              setState(() {
-                                _character = value;
-                              });
-                            }),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 170,
-                      child: ListTile(
-                        title: const Text('Cartela'),
-                        leading: Radio<TypeQuantity>(
-                            value: TypeQuantity.carton,
-                            groupValue: _character,
-                            onChanged: (TypeQuantity? value) {
-                              setState(() {
-                                _character = value;
-                              });
-                            }),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 170,
-                      child: ListTile(
-                        title: const Text('Caixa'),
-                        leading: Radio<TypeQuantity>(
-                            value: TypeQuantity.box,
-                            groupValue: _character,
-                            onChanged: (TypeQuantity? value) {
-                              setState(() {
-                                _character = value;
-                              });
-                            }),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -157,7 +86,7 @@ class InventoryState extends State<Inventory> {
                   ),
                 ),
                 DropdownButton<String>(
-                  value: dropdownValue,
+                  value: productsDropDownValues,
                   icon: const Icon(Icons.arrow_downward),
                   elevation: 16,
                   underline: Container(
@@ -167,7 +96,7 @@ class InventoryState extends State<Inventory> {
                   onChanged: (String? value) {
                     // This is called when the user selects an item.
                     setState(() {
-                      dropdownValue = value!;
+                      productsDropDownValues = value!;
                     });
                   },
                   items: products.map<DropdownMenuItem<String>>((value) {
@@ -179,6 +108,34 @@ class InventoryState extends State<Inventory> {
                 ),
               ],
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    const Text(
+                      'Quantidade:',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                    SizedBox(
+                      width: width/13,
+                      child: TextField(
+                        controller: quantityController,
+                        keyboardType: const TextInputType.numberWithOptions(),
+                        textAlign: TextAlign.center,
+                        decoration: const InputDecoration(
+                          hintText: ('0'),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                
+              ],
+            ),            
             const SizedBox(
               height: 35,
             ),
@@ -194,7 +151,7 @@ class InventoryState extends State<Inventory> {
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0),
                       child: SizedBox(
-                        width: 125.0,
+                        width: width/10,
                         child: TextField(
                           controller: costController,
                           keyboardType: const TextInputType.numberWithOptions(),
@@ -220,7 +177,7 @@ class InventoryState extends State<Inventory> {
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0),
                       child: SizedBox(
-                        width: 125.0,
+                        width: width/10,
                         child: TextField(
                           controller: sellController,
                           keyboardType: const TextInputType.numberWithOptions(),
@@ -249,7 +206,7 @@ class InventoryState extends State<Inventory> {
                     Padding(
                       padding: const EdgeInsets.only(left: 25.0),
                       child: SizedBox(
-                        width: 125.0,
+                        width: width/10,
                         child: TextField(
                           controller: dateInput,
                           decoration: const InputDecoration(
@@ -295,7 +252,7 @@ class InventoryState extends State<Inventory> {
                             _character = TypeQuantity.unity;
                             print('produtos');
                             print(products[0]['id']);
-                            dropdownValue = products[0]['id'];
+                            productsDropDownValues = products[0]['id'];
                           });
                         },
                         style: ElevatedButton.styleFrom(
@@ -327,7 +284,7 @@ class InventoryState extends State<Inventory> {
                                 realValues['costValue'],
                                 realValues['saleValue'],
                                 dateInput.text,
-                                dropdownValue,
+                                productsDropDownValues,
                                 SharedPreferencesUtils().getString('USER_ID'));
                           },
                           style: ElevatedButton.styleFrom(
