@@ -15,7 +15,7 @@ void main() {
       builder: EasyLoading.init(),
       debugShowCheckedModeBanner: false,
       home: Home()));
-   SharedPreferencesUtils().init();
+  SharedPreferencesUtils().init();
 }
 
 class Home extends StatefulWidget {
@@ -36,9 +36,14 @@ class _HomeState extends State<Home> {
         future: _isDeviceRegistered(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator(
-              strokeWidth: 4,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+            return const Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+                ),
+              ),
             );
           } else if (snapshot.hasError) {
             return Text('Erro: ${snapshot.error}');
