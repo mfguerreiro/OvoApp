@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
 import '../helpers/api.dart';
 import '../helpers/getDeviceInfo.dart';
 import '../helpers/sharedPreferences.dart';
-import '../home/home.dart';
-import '../user/user.dart';
 
 class SplashFunctions {
-  Future checkIfDeviceIdIsRegisteredAndCallScreen(context) async {
+  Future checkIfDeviceIdIsRegisteredAndCallScreen() async {
     print('checkIfDeviceIdIsRegisteredAndCallScreen: ');
 
     String? deviceId = await getDeviceIdentifier();
@@ -25,12 +22,9 @@ class SplashFunctions {
         SharedPreferencesUtils().setString('USER_ID', response['data']['id']);
         SharedPreferencesUtils().setString('NAME', response['data']['name']);
         print('set shared preferences');
-
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()));
+        return true;
       } else {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => User()));
+        return false;
       }
     } else {
       print('Erro ao buscar deviceId');
