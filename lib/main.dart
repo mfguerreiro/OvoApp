@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:ovoapp/helpers/sharedPreferences.dart';
 import 'package:ovoapp/home/home.dart';
 import 'package:ovoapp/splash/splashFunctions.dart';
 import 'package:ovoapp/user/user.dart';
@@ -14,7 +15,7 @@ void main() {
       builder: EasyLoading.init(),
       debugShowCheckedModeBanner: false,
       home: Home()));
-  // SharedPreferencesUtils().init();
+   SharedPreferencesUtils().init();
 }
 
 class Home extends StatefulWidget {

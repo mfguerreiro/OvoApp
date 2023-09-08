@@ -46,7 +46,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // String name = SharedPreferencesUtils().getString('NAME');
+   String name = SharedPreferencesUtils().getString('NAME');
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.fromLTRB(50, 30, 0, 0),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: const Text(
-                  "Olá, nome!",
-                  // "Olá, $name!",
+                child: Text(                
+                   "Olá, $name!",
                   style: TextStyle(color: Colors.amber, fontSize: 20.0),
                 ),
               ),
