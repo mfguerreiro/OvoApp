@@ -118,7 +118,7 @@ class InventoryState extends State<Inventory> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.fromLTRB(53.0, 0, 122, 0),
+                  padding: EdgeInsets.fromLTRB(53.0, 0, 70, 0),
                   child: Text(
                     'Produto:',
                     style: TextStyle(
