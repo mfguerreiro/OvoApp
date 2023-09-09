@@ -77,7 +77,48 @@ class InventoryState extends State<Inventory> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.fromLTRB(53.0, 0, 72, 0),
+                  padding: EdgeInsets.fromLTRB(53.0, 0, 36, 0),
+                  child: Text(
+                    'Unidade de Venda:',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                    ),
+                  ),
+                ),
+                DropdownButton<String>(
+                  value: unities,
+                  icon: const Icon(Icons.arrow_downward,color: Colors.black,),
+                  elevation: 16,
+                  underline: Container(
+                    height: 4,
+                    width: width/100,
+                    color: Colors.amber,
+                  ),
+                  onChanged: (String? value) {
+                    // This is called when the user selects an item.
+                    setState(() {
+                      unities= value!;
+                    });
+                  },
+                  
+                  items: [{"id":"box","name":"Caixa"},{"id":"carton","name":"Cartela"},{"id":"Unity","name":"Unidade"}].map<DropdownMenuItem<String>>((value) {
+                    return DropdownMenuItem(
+                      value: value['id'],
+                      child: Text(value['name']!),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
+            Container(
+              width: width,
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(53.0, 0, 122, 0),
                   child: Text(
                     'Produto:',
                     style: TextStyle(
@@ -87,7 +128,7 @@ class InventoryState extends State<Inventory> {
                 ),
                 DropdownButton<String>(
                   value: productsDropDownValues,
-                  icon: const Icon(Icons.arrow_downward),
+                  icon: const Icon(Icons.arrow_downward,color: Colors.black,),
                   elevation: 16,
                   underline: Container(
                     height: 4,
@@ -108,20 +149,29 @@ class InventoryState extends State<Inventory> {
                 ),
               ],
             ),
+             Container(
+              width: width,
+              height: 20,
+            ),
             Row(
+              
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
                   children: [
-                    const Text(
-                      'Quantidade:',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25.0,
+                    Row(children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(25,0,25,0),
+                      child: const Text(
+                        'Quantidade:',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 25.0,
+                        ),
                       ),
                     ),
                     SizedBox(
-                      width: width/13,
+                      width: width/4,
                       child: TextField(
                         controller: quantityController,
                         keyboardType: const TextInputType.numberWithOptions(),
@@ -131,6 +181,7 @@ class InventoryState extends State<Inventory> {
                         ),
                       ),
                     ),
+                    ],)
                   ],
                 ),
                 
@@ -197,43 +248,53 @@ class InventoryState extends State<Inventory> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(left: 13.0),
+                      padding: EdgeInsets.only(left: 2.0),
                       child: Text(
                         'Data de compra:',
                         style: TextStyle(fontSize: 25.0),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25.0),
-                      child: SizedBox(
-                        width: width/10,
-                        child: TextField(
-                          controller: dateInput,
-                          decoration: const InputDecoration(
-                            icon: Icon(Icons.calendar_today),
+                  ],
+                ),
+                
+                
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 0.0),
+                          child: SizedBox(
+                            
+                            width: width/2.5,
+                            child: TextField(
+                              controller: dateInput,
+                              decoration: const InputDecoration(
+                                icon: Icon(Icons.calendar_today),
+                              ),
+                              readOnly: true,
+                              onTap: () async {
+                                DateTime? pickedDate = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1950),
+                                    lastDate: DateTime(2100));
+
+                                if (pickedDate != null) {
+                                  print(pickedDate);
+
+                                  String formattedDate =
+                                      DateFormat('yyyy/MM/dd').format(pickedDate);
+                                  print(formattedDate);
+                                  setState(() {
+                                    dateInput.text = formattedDate;
+                                  });
+                                }
+                              },
+                            ),
                           ),
-                          readOnly: true,
-                          onTap: () async {
-                            DateTime? pickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(1950),
-                                lastDate: DateTime(2100));
-
-                            if (pickedDate != null) {
-                              print(pickedDate);
-
-                              String formattedDate =
-                                  DateFormat('yyyy/MM/dd').format(pickedDate);
-                              print(formattedDate);
-                              setState(() {
-                                dateInput.text = formattedDate;
-                              });
-                            }
-                          },
                         ),
-                      ),
-                    ),
+                     
+                    
                   ],
                 ),
                 const SizedBox(
